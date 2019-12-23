@@ -2,7 +2,7 @@ use std::thread;
 use std::time::Duration;
 
 pub fn run() {
-    // Single thread
+    // Singlethread
     // for i in 1..10{
     //     println!("executing from i loop: {}", i);
     // }
