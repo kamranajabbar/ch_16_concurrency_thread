@@ -12,13 +12,28 @@ pub fn run() {
     // }
 
     // Multithreading
-    for i in 1..10{
-        println!("executing from i loop: {}", i);
+    let handle = thread::spawn( || {
+        for i in 1..10 {
+            println!("executing from i loop from custome thread: {}", i);
+            thread::sleep(Duration::from_millis(1));
+        }
+    });
+
+    /*
+        If we want to execute first custome thread completely, and then main thread, so we have to join() with handle after custome thread.
+    */
+    //handle.join().unwrap();
+
+    for j in 1..5 {
+        println!("executing from j loop from main thread: {}", j);
+        thread::sleep(Duration::from_millis(1));
     }
 
-    for j in 1..10{
-        println!("executing from j loop: {}", j);
-    }
+    /*
+        Note:
+            When main thread executed completely, then custome thread will be stoped, if we want to execute custome thread completely either main thread completed its looping/cycle. So we have to used join() with handle in main tread in last. if we want to execute theards simultaneously so we need to used join() in last in main thread.
+    */
+    handle.join().unwrap();
 }
 
 /*
