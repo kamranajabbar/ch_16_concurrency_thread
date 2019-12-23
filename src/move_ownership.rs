@@ -5,7 +5,6 @@ pub fn run() {
 
     let handle = thread::spawn(move || {
         println!("vector : {:?}", v);
-        println!("vector : {:?}", v);
     });
 
     handle.join().unwrap();
